@@ -1,13 +1,13 @@
-package model;
+package org.example.model;
 
 public class PO {
-	
+
 	private int id;
 	private double unit_price, qty;
 	private String product, UoM, delivery_address, phone, mail, PO_status;
-	
-	
-	
+
+
+
 	public PO() {
 		super();
 	}
@@ -31,26 +31,7 @@ public class PO {
 	}
 
 	public void setPO_status(String pO_status) {
-		switch (pO_status) {
-		case "ORDERED":
-			PO_status = pO_status;
-			break;
-		case "SENT":
-			PO_status = pO_status;
-			break;
-		case "DELIVERED":
-			PO_status = pO_status;
-			break;
-		case "CLOSED":
-			PO_status = pO_status;
-			break;
-
-		default: 
-			break;
-		}
-		
-		
-		
+		PO_status = pO_status;
 	}
 
 	public int getId() {
@@ -122,5 +103,5 @@ public class PO {
 		return "PO [id=" + id + ", unit_price=" + unit_price + ", qty=" + qty + ", product=" + product + ", UoM=" + UoM
 				+ ", delivery_address=" + delivery_address + ", phone=" + phone + ", mail=" + mail + "]";
 	}
-	
-	}
+
+}

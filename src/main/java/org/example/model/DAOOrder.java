@@ -1,10 +1,9 @@
-package model;
+package org.example.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
@@ -25,7 +24,8 @@ public class DAOOrder {
 	private static String CREATEORDER = "INSERT INTO webshop (product, unit_price, qty, UoM, delivery_address, phone, mail, PO_status) VALUES(?, ?,?,?,?,?,?,?)";
 	private static String DELETEORDER = "DELETE FROM webshop WHERE id = ?";
 	private static String GETORDER = "SELECT * FROM webshop WHERE id = ? ";
-	private static String UPDATEORDER = "UPDATE student SET product = ?, unit_price = ?, qty=?, UoM = ?, delivery_address = ?, phone = ?, mail = ?, PO_status = ? WHERE id = ?";
+	private static String UPDATEORDER = "UPDATE webshop SET product = ?, unit_price = ?, qty=?, UoM = ?, delivery_address = ?, phone = ?, mail = ?, PO_status = ? WHERE id = ?";
+	
 
 	public void createOrder (PO po) {
 		Connection con = null;
@@ -106,15 +106,15 @@ public class DAOOrder {
 			e.printStackTrace();
 		}	
 	}
-	
+
 	public PO getOrder(int id){
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		
+
 		PO po = null;
-				
-          try {
+
+		try {
 			con = ds.getConnection();
 			pstm = con.prepareStatement(GETORDER);
 			pstm.setInt(1, id);
@@ -123,7 +123,7 @@ public class DAOOrder {
 
 			if(rs.next()){ 
 				po = new PO();
-				
+
 				po.setId(rs.getInt("id"));
 				po.setProduct(rs.getString("product"));
 				po.setUnit_price(rs.getDouble("unit_price"));
@@ -133,7 +133,7 @@ public class DAOOrder {
 				po.setPhone(rs.getString("phone"));			
 				po.setMail(rs.getString("mail"));			
 				po.setPO_status(rs.getString("PO_status"));			
-				
+
 				return po;
 
 			}
